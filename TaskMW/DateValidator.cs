@@ -13,7 +13,7 @@ namespace TaskMW
             return DateTime.IsLeapYear(date.Year);
         }
 
-        public static bool CheckIfDaysInMonthIsCorrect(DateTime date)
+        public static bool CheckIfDaysInMonthsAreCorrect(DateTime date)
         {
             int daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
 

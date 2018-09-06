@@ -13,26 +13,27 @@ namespace TaskMW
         {
             string _firstDateString;
             string _secondDateString;
-
+            string _firstDateBeforeFormatting;
+            string _secondDateBeforeFormatting;
             try
             {
                 Console.WriteLine("Write first date");
-                 var _firstDateBeforeFormatting = Convert.ToDateTime(Console.ReadLine()).ToString("dd.MM.yyyy");
+                _firstDateBeforeFormatting = Convert.ToDateTime(Console.ReadLine()).ToString("dd.MM.yyyy");
                 _firstDateString = DateHandler.ConvertToProperlyCultureFormat(DateHandler.AddZeroBeforeNumberIfNeeded(Convert.ToDateTime(_firstDateBeforeFormatting)));
 
                 Console.WriteLine("Write second date");
-                var _secondDateBeforeFormatting = Convert.ToDateTime(Console.ReadLine()).ToString("dd.MM.yyyy");
+                _secondDateBeforeFormatting = Convert.ToDateTime(Console.ReadLine()).ToString("dd.MM.yyyy");
                 _secondDateString = DateHandler.ConvertToProperlyCultureFormat(DateHandler.AddZeroBeforeNumberIfNeeded(Convert.ToDateTime(_secondDateBeforeFormatting)));
 
 
-                if (DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_firstDateString)) && !DateValidator.CheckIfDaysInMonthIsCorrect(Convert.ToDateTime(_firstDateString)) 
-                   || (!DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_firstDateString)) && !DateValidator.CheckIfDaysInMonthIsCorrect(Convert.ToDateTime(_firstDateString))))
+                if (DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_firstDateString)) && !DateValidator.CheckIfDaysInMonthsAreCorrect(Convert.ToDateTime(_firstDateString)) 
+                   || (!DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_firstDateString)) && !DateValidator.CheckIfDaysInMonthsAreCorrect(Convert.ToDateTime(_firstDateString))))
                 {
                     throw new Exception();
                 }
 
-                if (DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_secondDateString)) && !DateValidator.CheckIfDaysInMonthIsCorrect(Convert.ToDateTime(_secondDateString))
-                                       || (!DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_secondDateString)) && !DateValidator.CheckIfDaysInMonthIsCorrect(Convert.ToDateTime(_secondDateString))))
+                if (DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_secondDateString)) && !DateValidator.CheckIfDaysInMonthsAreCorrect(Convert.ToDateTime(_secondDateString))
+                                       || (!DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_secondDateString)) && !DateValidator.CheckIfDaysInMonthsAreCorrect(Convert.ToDateTime(_secondDateString))))
                 {
                     throw new Exception();
                 }

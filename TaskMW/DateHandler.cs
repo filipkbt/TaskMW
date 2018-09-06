@@ -25,7 +25,5 @@ namespace TaskMW
 
             return day + "." + month + "." + year;
         }
-
-
     }
 }
