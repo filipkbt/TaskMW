@@ -71,8 +71,7 @@ namespace TaskMW.Tests
         [TestCase("42.2.2018")]
         [Test]
         public void CheckIfDaysInMonthsAreCorrectShouldReturnFalse(string date)
-        {
-          
+        {          
             Assert.AreEqual(false, DateValidator.CheckIfDaysInMonthsAreCorrect(date));
         }
 
@@ -135,6 +134,5 @@ namespace TaskMW.Tests
 
             Assert.AreEqual(false, DateValidator.CheckIfFirstYearIsEqualToSecond(_firstDateString, _secondDateString));
         }
-
     }
 }

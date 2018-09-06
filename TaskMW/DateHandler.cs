@@ -22,7 +22,6 @@ namespace TaskMW
             {
                 return "";
             }
-
         }
 
         public static string AddZeroBeforeNumberIfNeeded(DateTime date)
@@ -82,6 +81,7 @@ namespace TaskMW
                         return string.Format(firstDate + " - " + secondDate);
                     }
                 }
+
                 else
                 {
                     if (DateValidator.CheckIfFirstYearIsEqualToSecond(secondDate, firstDate))

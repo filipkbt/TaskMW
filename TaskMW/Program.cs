@@ -17,15 +17,11 @@ namespace TaskMW
             string _secondDateBeforeFormatting;
             try
             {
-                Console.WriteLine(args[0]);
-
                 _firstDateBeforeFormatting = Convert.ToDateTime(args[0]).ToString("dd.MM.yyyy");
                 _firstDateString = DateHandler.ConvertToProperlyCultureFormat(DateHandler.AddZeroBeforeNumberIfNeeded(Convert.ToDateTime(_firstDateBeforeFormatting)));
 
-                Console.WriteLine(args[1]);
                 _secondDateBeforeFormatting = Convert.ToDateTime(args[1]).ToString("dd.MM.yyyy");
                 _secondDateString = DateHandler.ConvertToProperlyCultureFormat(DateHandler.AddZeroBeforeNumberIfNeeded(Convert.ToDateTime(_secondDateBeforeFormatting)));
-
 
                 if (DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_firstDateString)) && !DateValidator.CheckIfDaysInMonthsAreCorrect(_firstDateString)
                    || (!DateValidator.CheckIfYearIsLeap(Convert.ToDateTime(_firstDateString)) && !DateValidator.CheckIfDaysInMonthsAreCorrect(_firstDateString)))
