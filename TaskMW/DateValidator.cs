@@ -6,38 +6,78 @@ using System.Threading.Tasks;
 
 namespace TaskMW
 {
-    class DateValidator
+    public class DateValidator
     {
         public static bool CheckIfYearIsLeap(DateTime date)
         {
             return DateTime.IsLeapYear(date.Year);
         }
 
-        public static bool CheckIfDaysInMonthsAreCorrect(DateTime date)
+        public static bool CheckIfDaysInMonthsAreCorrect(string date)
         {
-            int daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
 
-            if ((DateTime.DaysInMonth(date.Year, date.Month) < date.Day))
+            try
+            {
+                var _dateBeforeFormatting = Convert.ToDateTime(date).ToString("dd.MM.yyyy");
+                var _dateString = DateHandler.ConvertToProperlyCultureFormat(DateHandler.AddZeroBeforeNumberIfNeeded(Convert.ToDateTime(_dateBeforeFormatting)));
+                DateTime _dateConvertedToDateTime = Convert.ToDateTime(_dateString);
+                int daysInMonth = DateTime.DaysInMonth(Convert.ToDateTime(_dateString).Year, Convert.ToDateTime(_dateString).Month);
+
+                if (daysInMonth < _dateConvertedToDateTime.Day)
+                {
+                    return false;
+                }
+                else if (CheckIfYearIsLeap(_dateConvertedToDateTime) && ((_dateConvertedToDateTime.Month == 2) && (daysInMonth < _dateConvertedToDateTime.Day)))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
             {
                 return false;
-            }
-            else if (CheckIfYearIsLeap(date) && ((date.Month == 2) && (daysInMonth < date.Day)))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
             }
         }
 
         public static bool CheckIfFirstMonthIsEqualToSecond(string firstDate, string secondDate)
         {
-            if(Convert.ToDateTime(firstDate).Month == Convert.ToDateTime(secondDate).Month)
+            try
             {
-                return true;
+                var firstDateFormatted = Convert.ToDateTime(firstDate).ToString("dd.MM.yyyy");
+                var secondDateFormatted = Convert.ToDateTime(secondDate).ToString("dd.MM.yyyy");
+
+                if (Convert.ToDateTime(firstDateFormatted).Month == Convert.ToDateTime(secondDateFormatted).Month)
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool CheckIfFirstYearIsEqualToSecond(string firstDate, string secondDate)
+        {
+            try
+            {
+                var firstDateFormatted = Convert.ToDateTime(firstDate).ToString("dd.MM.yyyy");
+                var secondDateFormatted = Convert.ToDateTime(secondDate).ToString("dd.MM.yyyy");
+
+                if (Convert.ToDateTime(firstDateFormatted).Year == Convert.ToDateTime(secondDateFormatted).Year)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
